@@ -9,6 +9,7 @@ HunterGate(
 project(rospack)
 
 hunter_add_package(catkin)
+hunter_add_package(ros-cmake_modules)
 hunter_add_package(Boost COMPONENTS filesystem program_options system)
 
 find_package(catkin REQUIRED COMPONENTS cmake_modules)
