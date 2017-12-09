@@ -3,17 +3,16 @@ cmake_minimum_required(VERSION 2.8.3)
 include(cmake/HunterGate.cmake)
 HunterGate(
     URL "https://github.com/lsolanka/hunter/archive/ros-hunter.tar.gz"
-    SHA1 "2f7430fb5c84d3845f0a8309b0e2b5011b3a12e3"
+    SHA1 "575cf98fa4a4963ebc91b69e6d6ce988bac7b358"
 )
 
 project(rospack)
 
 hunter_add_package(catkin)
-hunter_add_package(ros-cmake_modules)
 hunter_add_package(Boost COMPONENTS filesystem program_options system)
 hunter_add_package(TinyXML)
 
-find_package(catkin REQUIRED COMPONENTS cmake_modules)
+find_package(catkin REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem program_options system)
 set(Python_ADDITIONAL_VERSIONS "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
 find_package(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
@@ -21,10 +20,11 @@ find_package(TinyXML REQUIRED)
 
 set(Boost_LINK_TARGETS Boost::filesystem Boost::program_options Boost::system)
 
+set(PROJECT_INSTALLSPACE_LIBRARIES ros::rospack)
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES ros::rospack ${PYTHON_LIBRARIES}
-  DEPENDS Boost TinyXML
+  LIBRARIES rospack ${PYTHON_LIBRARIES}
+  DEPENDS "Boost COMPONENTS filesystem program_options system" TinyXML
 )
 
 #add_definitions(-Wall)
