@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.3)
 include(cmake/HunterGate.cmake)
 HunterGate(
     URL "https://github.com/lsolanka/hunter/archive/ros-hunter.tar.gz"
-    SHA1 "e1df0f33d79eb92aa63275307a7e259cd8360518"
+    SHA1 "2f7430fb5c84d3845f0a8309b0e2b5011b3a12e3"
 )
 
 project(rospack)
@@ -11,6 +11,7 @@ project(rospack)
 hunter_add_package(catkin)
 hunter_add_package(ros-cmake_modules)
 hunter_add_package(Boost COMPONENTS filesystem program_options system)
+hunter_add_package(TinyXML)
 
 find_package(catkin REQUIRED COMPONENTS cmake_modules)
 find_package(Boost REQUIRED COMPONENTS filesystem program_options system)
