@@ -2,21 +2,21 @@ cmake_minimum_required(VERSION 2.8.3)
 
 include(cmake/HunterGate.cmake)
 HunterGate(
-    URL "https://github.com/lsolanka/hunter/archive/ros-hunter.tar.gz"
-    SHA1 "575cf98fa4a4963ebc91b69e6d6ce988bac7b358"
+    URL "https://github.com/lsolanka/hunter/archive/v0.19.210-6.tar.gz"
+    SHA1 "f41d25b617ecb7e7062b9f30648e50eae39f9475"
 )
 
 project(rospack)
 
-hunter_add_package(catkin)
+hunter_add_package(ros-catkin)
 hunter_add_package(Boost COMPONENTS filesystem program_options system)
 hunter_add_package(TinyXML)
 
 find_package(catkin REQUIRED)
-find_package(Boost REQUIRED COMPONENTS filesystem program_options system)
+find_package(Boost CONFIG REQUIRED COMPONENTS filesystem program_options system)
 set(Python_ADDITIONAL_VERSIONS "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
 find_package(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
-find_package(TinyXML REQUIRED)
+find_package(TinyXML CONFIG REQUIRED)
 
 set(Boost_LINK_TARGETS Boost::filesystem Boost::program_options Boost::system)
 
@@ -43,7 +43,7 @@ add_library(rospack
   src/rospack_cmdline.cpp
   src/utils.cpp
 )
-target_link_libraries(rospack ${TinyXML_LIBRARIES} ${Boost_LINK_TARGETS} ${PYTHON_LIBRARIES})
+target_link_libraries(rospack TinyXML::tinyxml ${Boost_LINK_TARGETS} ${PYTHON_LIBRARIES})
 
 add_executable(rospackexe src/rospack_main.cpp)
 # Set the name, and make it a "global" executable
