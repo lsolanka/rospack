@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8.3)
 
 include(cmake/HunterGate.cmake)
 HunterGate(
-    URL "https://github.com/lsolanka/hunter/archive/v0.19.210-6.tar.gz"
-    SHA1 "f41d25b617ecb7e7062b9f30648e50eae39f9475"
+    URL "https://github.com/lsolanka/hunter/archive/v0.20.35-1.tar.gz"
+    SHA1 "9a0730f7952deed4c111042ee968aad995e681bd"
 )
 
 project(rospack)
